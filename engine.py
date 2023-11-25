@@ -11,17 +11,17 @@ class CNF:
 
     # Reduces the operators, if "and" is present inside "and" or "or" inside "or"
     # Example : ["and", "A", ["and", "B", "C"]] should be ["and", "A", "B", "C"]
-    def reduceOperators(self):
+    def reduceOperators(self, formula):
         print("reduceOperators is running...")
-        if (isinstance(self.propositional, str)):
+        if (isinstance(formula, str)):
             print("isinstance is called!")
-            return self.propositional
+            return formula
 
-        operator = self.propositional[0]
+        operator = formula[0]
         literals = []
         propositions = []
 
-        for index, item in enumerate(self.propositional):
+        for index, item in enumerate(formula):
             if (index > 0):
                 print("condition 03: index > 0")
                 if (isinstance(item, str)):
