@@ -5,9 +5,10 @@ import time
 start_time = time.time()
 
 text = ["and", "A", ["and", "B", "C"]]
+text2 = ["or", ["and", "B", "A"], ["and", "B", "C"]]
 cnf1 = CNF(text)
 print(cnf1.reduceOperators(text))
-
+print(cnf1.vlrTOlvr(text2))
 # End timer
 end_time = time.time()
 # Calculate elapsed time

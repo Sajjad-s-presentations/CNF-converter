@@ -44,3 +44,9 @@ class CNF:
                 newFormula.append(item)
         newFormula.insert(0, operator)
         return newFormula
+
+    def vlrTOlvr(self, formula):
+        if(len(formula)==3):
+            while(len(formula[1]) == 3):
+                self.vlrTOlvr(formula[1])
+            print("({}){}({})".format(formula[1], formula[0], formula[2]))
