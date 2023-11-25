@@ -47,6 +47,10 @@ class CNF:
 
     def vlrTOlvr(self, formula):
         if(len(formula)==3):
-            while(len(formula[1]) == 3):
+            if(len(formula[1]) == 3):
                 self.vlrTOlvr(formula[1])
-            print("({}){}({})".format(formula[1], formula[0], formula[2]))
+                print("({}){}({})".format(formula[1], formula[0], formula[2]))
+
+            if (len(formula[2]) == 3):
+                self.vlrTOlvr(formula[2])
+                print("({}){}({})".format(formula[1], formula[0], formula[2]))
