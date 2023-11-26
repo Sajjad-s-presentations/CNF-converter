@@ -116,7 +116,7 @@ class CNF:
                     return formula
                 # ~~p   --->    p
                 elif (isinstance(formula[1], list) and (formula[1])[0] == "not"):
-                    return convert((formula[1])[1])
+                    return self.convert((formula[1])[1])
                 # ~(A & B & C & ...)  --->    ~A | ~B | ~C | ....
                 elif (isinstance(formula[1], list) and (formula[1])[0] == "and"):
                     disjuncts = []
