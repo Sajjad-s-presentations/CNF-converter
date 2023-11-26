@@ -4,11 +4,9 @@ import time
 # Start timer
 start_time = time.time()
 
-text = ["and", "A", ["and", "B", "C"]]
-text2 = ["or", ["or", ["and", "B", "A"], ["and", "B", "C"]], ["and", "B", "C"]]
+text = ["or", "B", ["and", "A", "A"]]
 cnf1 = CNF(text)
-print(cnf1.reduceOperators(text))
-print(cnf1.vlrTOlvr(text2))
+print(cnf1.removeDuplicates(text))
 # End timer
 end_time = time.time()
 # Calculate elapsed time
