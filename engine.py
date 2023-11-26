@@ -54,3 +54,23 @@ class CNF:
             if (len(formula[2]) == 3):
                 self.vlrTOlvr(formula[2])
                 print("({}){}({})".format(formula[1], formula[0], formula[2]))
+
+    # Removes duplicate elements from "and" and "or"
+    # Example : ["and", "A", "A"] should be "A"
+    def removeDuplicates(self, formula):
+        if (isinstance(formula, str) or (
+                isinstance(formula, list) and formula[0] == "not" and isinstance(formula[1], str))):
+            return formula
+        for i, checkItem in enumerate(formula):
+            if (i > 0):
+                for j, item in reversed(list(enumerate(formula))):
+                    if (j > i):
+                        if (isinstance(item, list)):
+                            newItem = self.removeDuplicates(item)
+                            formula.insert(j, newItem)
+                            formula.remove(item)
+                        if (checkItem == item):
+                            formula.remove(item)
+        if (isinstance(formula, list) and formula[0] != "not" and len(formula) < 3):
+            return formula[1]
+        return formula
