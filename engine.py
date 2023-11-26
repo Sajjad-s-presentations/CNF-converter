@@ -106,7 +106,7 @@ class CNF:
         elif (isinstance(formula, list)):
             # A => B    --->    ~A | B
             if (formula[0] == "implies"):
-                return convert(["or", convert(["not", convert(formula[1])]), convert(formula[2])])
+                return self.convert(["or", self.convert(["not", self.convert(formula[1])]), self.convert(formula[2])])
             # A <=> B   --->    (~A | B) & (A | ~B)
             elif (formula[0] == "iff"):
                 return convert("and", convert(["or", convert(["not", formula[1]]), formula[2]]),
