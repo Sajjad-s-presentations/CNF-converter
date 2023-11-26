@@ -74,3 +74,27 @@ class CNF:
         if (isinstance(formula, list) and formula[0] != "not" and len(formula) < 3):
             return formula[1]
         return formula
+
+    # Sorts the literals and lists in the formula (will be used for removing duplicate items in list)
+    # The literals are in the beginning followed by lists. And the "and" list is present in the end
+    def sort(self, formula):
+        if (isinstance(formula, str)):
+            return formula
+        operator = formula[0]
+        if (operator == "implies"):
+            return formula
+        literals = []
+        propositions = []
+        for index, item in enumerate(formula):
+            if (index > 0):
+                if (isinstance(item, str)):
+                    literals.append(item)
+                elif (isinstance(item, list)):
+                    propositions.append(self.sort(item))
+        if (len(literals) > 0):
+            literals.sort()
+        if (len(propositions) > 0):
+            propositions = sorted(propositions, key=lambda proposition: proposition[0], reverse=True)
+        newFormula = literals + propositions
+        newFormula.insert(0, operator)
+        return newFormula
