@@ -109,8 +109,7 @@ class CNF:
                 return self.convert(["or", self.convert(["not", self.convert(formula[1])]), self.convert(formula[2])])
             # A <=> B   --->    (~A | B) & (A | ~B)
             elif (formula[0] == "iff"):
-                return convert("and", convert(["or", convert(["not", formula[1]]), formula[2]]),
-                               convert(["or", formula[1], convert(["not", formula[2]])]))
+                return self.convert("and", self.convert(["or", self.convert(["not", formula[1]]), formula[2]]), self.convert(["or", formula[1], self.convert(["not", self.formula[2]])]))
             elif (formula[0] == "not"):
                 # ~p
                 if (isinstance(formula[1], str)):
