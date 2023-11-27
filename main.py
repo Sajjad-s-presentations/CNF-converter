@@ -4,9 +4,9 @@ import time
 # Start timer
 start_time = time.time()
 
-text = ["implies", "B", ["and", "A", "A"]]
+text = ["or", "A", ["and", "C", "D"]]
 cnf1 = CNF(text)
-print(cnf1.sort(text))
+print(cnf1.convert(text))
 # End timer
 end_time = time.time()
 # Calculate elapsed time

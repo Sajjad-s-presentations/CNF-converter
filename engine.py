@@ -175,38 +175,36 @@ class CNF:
                     formula.remove(formula[1])
                     formula.remove(formula[1])
 
-                    formula = reduceOperators(formula)
-                    formula = sort(formula)
+                    formula = self.reduceOperators(formula)
+                    formula = self.sort(formula)
                     return formula
                 # Case !A OR !B
-                elif (isinstance(formula[1], list) and (formula[1])[0] == "not" and isinstance((formula[1])[1],
-                                                                                               str) and isinstance(
-                        formula[2], list) and (formula[2])[0] == "not" and isinstance((formula[2])[1], str)):
+                elif (isinstance(formula[1], list) and (formula[1])[0] == "not" and isinstance((formula[1])[1], str) and isinstance(formula[2], list) and (formula[2])[0] == "not" and isinstance((formula[2])[1], str)):
                     return formula
                 # For any other operator compute the inner operator after or
                 else:
                     disjuncts = []
                     for i, item in enumerate(formula):
                         if (i > 0):
-                            disjuncts.append(convert(item))
+                            disjuncts.append(self.convert(item))
                     disjuncts.insert(0, "or")
-                    return convert(disjuncts)
+                    return self.convert(disjuncts)
 
             elif (formula[0] == "and"):
                 # Handling the case ["and", "A", ["or", "C", "D"], ["or", "D", "C"]]
-                formula = sort(formula)
-                formula = removeDuplicates(formula)
+                formula = self.sort(formula)
+                formula = self.removeDuplicates(formula)
                 # Handling the case ["and", "A", ["and", "B", "C"]]
-                formula = reduceOperators(formula)
+                formula = self.reduceOperators(formula)
                 # The order will be messed up when the redundant operators are removed
-                formula = sort(formula)
+                formula = self.sort(formula)
                 if (len(formula) == 1):
                     return formula
                 disjuncts = []
                 for i, item in enumerate(formula):
                     if (i > 0):
-                        disjuncts.append(convert(item))
+                        disjuncts.append(self.convert(item))
                 disjuncts.insert(0, "and")
 
-                disjuncts = reduceOperators(disjuncts)
+                disjuncts = self.reduceOperators(disjuncts)
                 return disjuncts
