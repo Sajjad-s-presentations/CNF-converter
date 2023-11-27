@@ -122,17 +122,17 @@ class CNF:
                     disjuncts = []
                     for index, item in enumerate(formula[1]):
                         if (index > 0):
-                            disjuncts.append(convert(["not", item]))
+                            disjuncts.append(self.convert(["not", item]))
                     disjuncts.insert(0, "or")
-                    return convert(disjuncts)
+                    return self.convert(disjuncts)
                 # ~(A | B | C | ...)  --->    ~A & ~B & ~C & ....
                 elif (isinstance(formula[1], list) and (formula[1])[0] == "or"):
                     conjuncts = []
                     for index, item in enumerate(formula[1]):
                         if (index > 0):
-                            conjuncts.append(convert(["not", item]))
+                            conjuncts.append(self.convert(["not", item]))
                     conjuncts.insert(0, "and")
-                    return convert(conjuncts)
+                    return self.convert(conjuncts)
                 # ~(A => B)	--->	A & ~B
                 elif (isinstance(formula[1], list) and ((formula[1])[0] == "implies")):
                     return convert(["and", convert((formula[1])[1]), ["not", convert((formula[1][2]))]])
