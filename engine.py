@@ -140,14 +140,14 @@ class CNF:
                     return self.convert(["not", self.convert(formula[1])])
             elif (formula[0] == "or"):
                 # A | A  --->    A
-                formula = sort(formula)
-                formula = removeDuplicates(formula)
+                formula = self.sort(formula)
+                formula = self.removeDuplicates(formula)
                 # Handling the case ["or", "A", ["or", "B", "C"]]
-                formula = reduceOperators(formula)
+                formula = self.reduceOperators(formula)
                 # The order will be messed up when the redundant operators are removed
                 # Handling the case when the formula is reduced.
                 # For instance A or A is reduced to A
-                formula = sort(formula)
+                formula = self.sort(formula)
                 if (len(formula) == 1):
                     return formula
                 if ((isinstance(formula[-1], list) and (formula[-1])[0] == "and")):
@@ -159,12 +159,12 @@ class CNF:
                     conjuncts.insert(0, "and")
                     # If only 2 items, then remove them and also remove OR
                     if (len(formula) < 4):
-                        return convert(conjuncts)
+                        return self.convert(conjuncts)
                     else:
                         formula.remove(formula[-1])
                         formula.remove(formula[-1])
                     formula.append(conjuncts)
-                    return convert(formula)
+                    return self.convert(formula)
                 # Case A OR B,
                 elif ((isinstance(formula[1], str) and isinstance(formula[2], str)) or (
                         isinstance(formula[1], str) and isinstance(formula[2], list) and (formula[2])[
