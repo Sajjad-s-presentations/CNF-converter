@@ -5,6 +5,7 @@ import time
 start_time = time.time()
 
 text = ["or", ["->", "B", "A"], ["->", "D", "C"]]
+
 cnf1 = CNF(text)
 print(cnf1.convert(text))
 # End timer
