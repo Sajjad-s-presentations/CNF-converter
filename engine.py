@@ -135,9 +135,9 @@ class CNF:
                     return self.convert(conjuncts)
                 # ~(A => B)	--->	A & ~B
                 elif (isinstance(formula[1], list) and ((formula[1])[0] == "implies")):
-                    return convert(["and", convert((formula[1])[1]), ["not", convert((formula[1][2]))]])
+                    return self.convert(["and", self.convert((formula[1])[1]), ["not", self.convert((formula[1][2]))]])
                 elif (isinstance(formula[1], list) and (formula[1])[0] == "iff"):
-                    return convert(["not", convert(formula[1])])
+                    return self.convert(["not", self.convert(formula[1])])
             elif (formula[0] == "or"):
                 # A | A  --->    A
                 formula = sort(formula)
