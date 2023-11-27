@@ -4,7 +4,7 @@ import time
 # Start timer
 start_time = time.time()
 
-text = ["->", "B", "A"]
+text = ["or", ["->", "B", "A"], ["->", "D", "C"]]
 cnf1 = CNF(text)
 print(cnf1.convert(text))
 # End timer
