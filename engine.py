@@ -81,7 +81,7 @@ class CNF:
         if (isinstance(formula, str)):
             return formula
         operator = formula[0]
-        if (operator == "implies"):
+        if (operator == "->"):
             return formula
         literals = []
         propositions = []
@@ -105,7 +105,7 @@ class CNF:
             return formula
         elif (isinstance(formula, list)):
             # A => B    --->    ~A | B
-            if (formula[0] == "implies"):
+            if (formula[0] == "->"):
                 return self.convert(["or", self.convert(["not", self.convert(formula[1])]), self.convert(formula[2])])
             # A <=> B   --->    (~A | B) & (A | ~B)
             elif (formula[0] == "iff"):
@@ -134,7 +134,7 @@ class CNF:
                     conjuncts.insert(0, "and")
                     return self.convert(conjuncts)
                 # ~(A => B)	--->	A & ~B
-                elif (isinstance(formula[1], list) and ((formula[1])[0] == "implies")):
+                elif (isinstance(formula[1], list) and ((formula[1])[0] == "->")):
                     return self.convert(["and", self.convert((formula[1])[1]), ["not", self.convert((formula[1][2]))]])
                 elif (isinstance(formula[1], list) and (formula[1])[0] == "iff"):
                     return self.convert(["not", self.convert(formula[1])])

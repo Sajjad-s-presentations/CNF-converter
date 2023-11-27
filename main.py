@@ -4,7 +4,7 @@ import time
 # Start timer
 start_time = time.time()
 
-text = ["implies", "B", "A"]
+text = ["->", "B", "A"]
 cnf1 = CNF(text)
 print(cnf1.convert(text))
 # End timer
