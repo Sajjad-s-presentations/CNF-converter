@@ -4,7 +4,7 @@ import time
 # Start timer
 start_time = time.time()
 
-text = ["and", ["->", "B", "A"], ["->", "D", "C"]]
+text = ["and", [["->", "B", "A"], ["->", "D", "C"]], [["->", "B", "A"], ["->", "D", "C"]]]
 
 cnf1 = CNF(text)
 print(cnf1.convert(text))
